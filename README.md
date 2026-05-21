@@ -1,144 +1,127 @@
-# 💳 Fintech Ops Dashboard
+# Fintech Ops Dashboard
 
-Mini portal administrativo tipo fintech para la gestión y monitoreo de órdenes y pagos.
+Portal administrativo para gestión y monitoreo de órdenes y pagos, construido como prueba técnica full-stack.
 
-Este proyecto simula una herramienta interna utilizada por operadores para:
-- visualizar transacciones
-- monitorear estados de pago
-- detectar errores rápidamente
-- analizar métricas clave
-
----
-
-# 🚀 Tech Stack
-
-## Frontend
-- Next.js (pendiente)
-- TailwindCSS
-- shadcn/ui
-
-## Backend
-- FastAPI
-- SQLAlchemy
-- PostgreSQL
-
-## Infraestructura
-- Railway (Database & Backend deploy)
-- Vercel (Frontend deploy - pendiente)
+**Demo en vivo →** [fintech-ops-roan.vercel.app](https://fintech-ops-roan.vercel.app)
+&nbsp;&nbsp;|&nbsp;&nbsp;
+**API →** [fintech-ops.onrender.com](https://fintech-ops.onrender.com)
+&nbsp;&nbsp;|&nbsp;&nbsp;
+**Docs →** [/docs](https://fintech-ops.onrender.com/docs)
 
 ---
 
-# 🧠 Arquitectura
+## Credenciales de prueba
 
-Proyecto organizado como **monorepo**:
+```
+email:    admin@test.com
+password: 123456
+```
+
+---
+
+## Stack
+
+| Capa | Tecnología |
+|---|---|
+| Frontend | Next.js (App Router), React, TailwindCSS |
+| Backend | FastAPI, SQLAlchemy, SQLite |
+| Deploy | Vercel (frontend) + Render (backend) |
+
+---
+
+## Funcionalidades
+
+- Autenticación con JWT
+- Dashboard con métricas clave
+- Tabla de órdenes con búsqueda, filtros, paginación y sorting
+- Vista detalle por orden
+- UI responsive (desktop y mobile)
+
+---
+
+## Arquitectura
 
 ```
 fintech-ops/
-├── backend/
 ├── frontend/
-├── docs/
-├── scripts/
+│   ├── app/                  # App Router de Next.js
+│   ├── components/
+│   │   └── DashboardView/    # Componentes de presentación
+│   └── hooks/
+│       └── useDashboard.ts   # Lógica desacoplada de la UI
+└── backend/
+    └── app/
+        ├── routers/          # auth, orders
+        ├── services/         # Lógica de negocio
+        └── models/           # ORM con SQLAlchemy
 ```
+
+El frontend separa lógica de presentación mediante hooks personalizados. El backend organiza responsabilidades por dominio (routers → servicios → modelos).
 
 ---
 
-## 🧩 Backend Architecture
+## Instalación local
 
-```
-backend/app/
-├── routes/
-├── services/
-├── models/
-├── schemas/
-├── db/
-├── main.py
-```
-
----
-
-# ⚙️ Instalación
+### Backend
 
 ```bash
 cd backend
-py -m venv venv
-.\venv\Scripts\Activate.ps1
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # Mac/Linux
 pip install -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
----
-
-# ▶️ Ejecutar
+### Frontend
 
 ```bash
-py -m uvicorn app.main:app --reload
+cd frontend
+npm install
+npm run dev
+```
+
+### Variables de entorno
+
+Crear `frontend/.env.local`:
+
+```env
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 ```
 
 ---
 
-# 🔌 Variables de entorno
+## API
 
-```
-DATABASE_URL=postgresql://user:password@host:port/db
-```
-
----
-
-# 📡 Endpoints
-
-### GET /orders
-- búsqueda
-- filtros
-- paginación
-- sorting
-
-### GET /orders/{id}
-- detalle de orden
+| Método | Endpoint | Descripción |
+|---|---|---|
+| `POST` | `/auth/login` | Autenticación, retorna JWT |
+| `GET` | `/orders` | Lista de órdenes (búsqueda, filtros, paginación, sorting) |
+| `GET` | `/orders/{id}` | Detalle de una orden |
 
 ---
 
-# 🎯 Decisiones técnicas
+## Decisiones técnicas
 
-- FastAPI por rapidez
-- PostgreSQL por robustez
-- Arquitectura por capas
-- Monorepo para separar responsabilidades
+**SQLite en lugar de PostgreSQL** — suficiente para el scope de una prueba técnica; el cambio a Postgres en producción sería transparente via SQLAlchemy.
 
----
+**Sin refresh tokens** — se optó por JWT simple para mantener el foco en las funcionalidades del dashboard.
 
-# ⚖️ Tradeoffs
-
-- No JWT por tiempo
-- No Redis en esta versión
+**Sin caching** — prioridad en legibilidad del código sobre optimización prematura.
 
 ---
 
-# 🚀 Mejoras futuras
+## Mejoras pendientes
 
-- JWT + refresh tokens
-- Redis caching
-- WebSockets
-- Tests
-- CI/CD
-
----
-
-# 📦 Deploy
-
-- Backend → Railway
-- Frontend → Vercel
+- [ ] Refresh tokens
+- [ ] Skeleton loading states
+- [ ] Dark mode
+- [ ] WebSockets para actualizaciones en tiempo real
+- [ ] Tests (pytest + Playwright)
+- [ ] Docker + CI/CD
 
 ---
 
-# 🌿 Git Workflow
+## Autor
 
-```
-main → producción
-develop → integración
-feature/* → desarrollo
-```
-
----
-
-# 👨‍💻 Autor
-
-Ezequiel Cruz Paz
+**Ezequiel Cruz Paz**
