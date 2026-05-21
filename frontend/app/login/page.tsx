@@ -18,7 +18,7 @@ export default function LoginPage() {
     try {
       const data = await loginRequest(email, password)
       localStorage.setItem("token", data.access_token)
-      router.push("/dashboard")
+      router.replace("/dashboard")
     } catch (err: any) {
       setError(err.message)
     } finally {
