@@ -170,83 +170,83 @@ export function DashboardView({
                 </div>
 
                 {/* TABLA */}
-<div className="bg-white border rounded-xl overflow-hidden">
+                <div className="bg-white border rounded-xl overflow-hidden">
 
-  {loading ? (
-    <div className="p-6 text-center text-gray-600">Cargando...</div>
-  ) : orders.length === 0 ? (
-    <div className="p-6 text-center text-gray-600">Sin resultados</div>
-  ) : (
+                    {loading ? (
+                        <div className="p-6 text-center text-gray-600">Cargando...</div>
+                    ) : orders.length === 0 ? (
+                        <div className="p-6 text-center text-gray-600">Sin resultados</div>
+                    ) : (
 
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm min-w-[700px]">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm min-w-[700px]">
 
-        {/* HEADER */}
-        <thead>
-          <tr className="border-b bg-gray-50">
-            <th className="p-3 text-center text-gray-700 font-medium">Cliente</th>
-            <th className="p-3 text-center text-gray-700 font-medium hidden sm:table-cell">Email</th>
-            <th className="p-3 text-center text-gray-700 font-medium">Monto</th>
-            <th className="p-3 text-center text-gray-700 font-medium">Estado</th>
-            <th className="p-3 text-center text-gray-700 font-medium hidden md:table-cell">Fecha</th>
-            <th className="p-3 text-center text-gray-700 font-medium">Acciones</th>
-          </tr>
-        </thead>
+                                {/* HEADER */}
+                                <thead>
+                                    <tr className="border-b bg-gray-50">
+                                        <th className="p-3 text-center text-gray-700 font-medium">Cliente</th>
+                                        <th className="p-3 text-center text-gray-700 font-medium hidden sm:table-cell">Email</th>
+                                        <th className="p-3 text-center text-gray-700 font-medium">Monto</th>
+                                        <th className="p-3 text-center text-gray-700 font-medium">Estado</th>
+                                        <th className="p-3 text-center text-gray-700 font-medium hidden md:table-cell">Fecha</th>
+                                        <th className="p-3 text-center text-gray-700 font-medium">Acciones</th>
+                                    </tr>
+                                </thead>
 
-        {/* BODY */}
-        <tbody>
-          {orders.map((o) => (
-            <tr
-              key={o.id}
-              className="border-t hover:bg-gray-50 transition"
-            >
+                                {/* BODY */}
+                                <tbody>
+                                    {orders.map((o) => (
+                                        <tr
+                                            key={o.id}
+                                            className="border-t hover:bg-gray-50 transition"
+                                        >
 
-              <td className="p-3 text-gray-900 font-medium whitespace-nowrap">
-                {o.customer_name}
-              </td>
+                                            <td className="p-3 text-gray-900 font-medium whitespace-nowrap">
+                                                {o.customer_name}
+                                            </td>
 
-              <td className="p-3 text-gray-700 truncate max-w-[180px] hidden sm:table-cell">
-                {o.customer_email}
-              </td>
+                                            <td className="p-3 text-gray-700 truncate max-w-[180px] hidden sm:table-cell">
+                                                {o.customer_email}
+                                            </td>
 
-              <td className="p-3 text-gray-900 whitespace-nowrap">
-                {fmt(o.amount)}
-              </td>
+                                            <td className="p-3 text-gray-900 whitespace-nowrap">
+                                                {fmt(o.amount)}
+                                            </td>
 
-              <td className={`p-3 font-medium whitespace-nowrap ${STATUS_COLORS[o.status]}`}>
-                {STATUS_LABELS[o.status] || o.status}
-              </td>
+                                            <td className={`p-3 font-medium whitespace-nowrap ${STATUS_COLORS[o.status]}`}>
+                                                {STATUS_LABELS[o.status] || o.status}
+                                            </td>
 
-              <td className="p-3 text-gray-600 whitespace-nowrap hidden md:table-cell">
-                {fmtDate(o.created_at)}
-              </td>
+                                            <td className="p-3 text-gray-600 whitespace-nowrap hidden md:table-cell">
+                                                {fmtDate(o.created_at)}
+                                            </td>
 
-              <td className="p-3">
-                <div className="flex justify-center">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      router.push(`/orders/${o.id}`)
-                    }}
-                    className="flex items-center justify-center w-9 h-9 rounded-lg 
+                                            <td className="p-3">
+                                                <div className="flex justify-center">
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            router.push(`/orders/${o.id}`)
+                                                        }}
+                                                        className="flex items-center justify-center w-9 h-9 rounded-lg 
                     bg-blue-50 text-blue-600 
                     hover:bg-blue-600 hover:text-white 
                     transition-all duration-200 shadow-sm hover:shadow-md"
-                  >
-                    <Eye size={18} />
-                  </button>
+                                                    >
+                                                        <Eye size={18} />
+                                                    </button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    ))}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    )}
                 </div>
-              </td>
-
-            </tr>
-          ))}
-        </tbody>
-
-      </table>
-    </div>
-
-  )}
-</div>
 
                 {/* PAGINACIÓN */}
 

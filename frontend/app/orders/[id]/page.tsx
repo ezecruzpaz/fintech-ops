@@ -76,7 +76,7 @@ export default function OrderDetailPage() {
             </p>
           </div>
 
-          {/* 🔥 BOTÓN REGRESAR */}
+          {/* BOTÓN REGRESAR */}
           <button
             onClick={() => router.push("/dashboard")}
             className="flex items-center gap-2 px-3 py-2 rounded-lg 
@@ -133,16 +133,10 @@ export default function OrderDetailPage() {
                 {new Date(order.created_at).toLocaleString()}
               </p>
             </div>
-
-            <div className="md:col-span-2">
-              <p className="text-xs text-gray-400">ID</p>
-              <p className="text-gray-500 text-sm break-all">{order.id}</p>
-            </div>
-
           </div>
         </div>
 
-        {/* 🔥 TIMELINE PRO */}
+        {/*  TIMELINE PRO */}
         <div className="bg-white border rounded-2xl p-6 shadow-sm">
 
           <p className="text-sm text-gray-500 mb-4">Actividad</p>

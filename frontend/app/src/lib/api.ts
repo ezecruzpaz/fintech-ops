@@ -9,7 +9,7 @@ export async function loginRequest(email: string, password: string) {
     body: JSON.stringify({ email, password })
   })
 
-  if (!res.ok) throw new Error("Invalid credentials")
+  if (!res.ok) throw new Error(" Credenciales Invalidas")
   return res.json()
 }
 
@@ -34,7 +34,7 @@ export async function getOrders(
     { headers: { Authorization: `Bearer ${token}` } }
   )
 
-  if (!res.ok) throw new Error("Failed to fetch orders")
+  if (!res.ok) throw new Error("No se pudieron obtener los pedidos")
   return res.json()
 }
 export async function getOrderById(token: string, id: string) {
