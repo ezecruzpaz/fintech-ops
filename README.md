@@ -2,12 +2,9 @@
 
 Portal administrativo para gestión y monitoreo de órdenes y pagos, construido como prueba técnica full-stack.
 
-**Demo en vivo →** [fintech-ops-roan.vercel.app](https://fintech-ops-roan.vercel.app)
+**Demo en vivo →** [fintech-ops-roan.vercel.app](https://fintech-ops-roan.vercel.app/login)
 &nbsp;&nbsp;|&nbsp;&nbsp;
-**API →** [fintech-ops.onrender.com](https://fintech-ops.onrender.com)
-&nbsp;&nbsp;|&nbsp;&nbsp;
-**Docs →** [/docs](https://fintech-ops.onrender.com/docs)
-
+**API →** [fintech-ops.onrender.com](https://fintech-ops.onrender.com/docs)
 ---
 
 ## Credenciales de prueba
