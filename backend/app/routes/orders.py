@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from app.core.deps import get_current_user
 
 router = APIRouter()
 
 @router.get("/")
-def get_orders():
+def get_orders(user=Depends(get_current_user)):
     return {
-        "data": [],
-        "message": "Orders endpoint funcionando"
+        "message": "Orders protegidas",
+        "user": user
     }
