@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.deps import get_db
 from app.services.orders_service import get_orders_service
 from app.core.deps import get_current_user
+from app.services.orders_service import get_order_by_id_service
 
 router = APIRouter()
 
@@ -26,3 +27,13 @@ def get_orders(
         sort=sort,
         order=order
     )
+@router.get("/{order_id}")
+def get_order_by_id(
+    order_id: str,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user)
+):
+    return get_order_by_id_service(
+        db, 
+        order_id
+        )

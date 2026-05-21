@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, desc, asc
 from app.models.order import Order
+from fastapi import HTTPException
 
 def get_orders_service(
     db: Session,
@@ -45,3 +46,10 @@ def get_orders_service(
         "page": page,
         "limit": limit
     }
+def get_order_by_id_service(db, order_id: str):
+    order = db.query(Order).filter(Order.id == order_id).first()
+
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+
+    return order
